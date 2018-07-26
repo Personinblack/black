@@ -19,6 +19,12 @@ package me.blackness.black;
                                                         i"  personinblack
                                                         |
  */
-public interface Scheme {
 
+/**
+ * scheme.
+ */
+public interface Scheme {
+    void map(char character, Element element);
+    void unmap(char character);
+    void unmap(Element element);
 }
