@@ -3,7 +3,6 @@ package me.blackness.black.listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.inventory.PlayerInventory;
 
 import me.blackness.black.Page;
 
@@ -42,9 +41,7 @@ public final class InventoryDragListener implements Listener {
      */
     @EventHandler
     public void listener(final InventoryDragEvent event) {
-        if (event.getInventory().getHolder() instanceof Page &&
-                !(event.getInventory() instanceof PlayerInventory)) {
-
+        if (event.getInventory().getHolder() instanceof Page) {
             ((Page) event.getInventory().getHolder()).accept(event);
         }
     }

@@ -19,6 +19,7 @@ import me.blackness.black.req.AddedElementReq;
 import me.blackness.black.req.ClickedElementReq;
 import me.blackness.black.req.DragReq;
 import me.blackness.black.req.OrReq;
+import me.blackness.black.req.TransferredElementReq;
 
 /*
        .                                                    .
@@ -66,6 +67,7 @@ public final class BasicElement implements Element {
         this.targets = Objects.requireNonNull(targets.clone());
         elementReq = new OrReq(
             new ClickedElementReq(this),
+            new TransferredElementReq(this),
             icon.getType() == Material.AIR
                 ? new DragReq()
                 : new AddedElementReq(this)

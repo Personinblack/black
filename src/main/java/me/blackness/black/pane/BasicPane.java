@@ -17,7 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import me.blackness.black.Element;
 import me.blackness.black.Pane;
 import me.blackness.black.element.BasicElement;
+import me.blackness.black.req.OrReq;
 import me.blackness.black.req.SlotReq;
+import me.blackness.black.req.TransferredSlotReq;
 import me.blackness.observer.Source;
 import me.blackness.observer.Target;
 import me.blackness.observer.source.BasicSource;
@@ -296,7 +298,11 @@ public final class BasicPane implements Pane {
     @Override
     public void accept(final InventoryInteractEvent event) {
         forEachSlot((y, x) -> {
-            if (new SlotReq(locX + x + (locY + y) * 9).control(event)) {
+            if (new OrReq(
+                        new SlotReq(locX + x + (locY + y) * 9),
+                        new TransferredSlotReq(locX + x + (locY + y) * 9)
+                    ).control(event)) {
+
                 paneElements[y][x].accept(event);
             }
         });
